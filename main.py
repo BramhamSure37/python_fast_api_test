@@ -70,7 +70,7 @@ def init_db():
 
 
 # GET all products
-@app.get("/products")
+@app.get("/products/")
 def get_products(DB :Session = Depends(get_db)):
     db_products = DB.query(database_models.Product).all()
     return db_products
@@ -94,7 +94,7 @@ def get_product_by_id(id: int, DB: Session = Depends(get_db)):
 
 
 # POST - Add product
-@app.post("/products")
+@app.post("/products/")
 def add_product(product: Product, DB: Session = Depends(get_db)):
     db_product = database_models.Product(**product.model_dump())
     DB.add(db_product)
